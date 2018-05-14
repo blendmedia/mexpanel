@@ -1,6 +1,6 @@
 # Mexpanel
 
-**TODO: Add description**
+API wrapper for [Mixpanel](https://mixpanel.com)
 
 ## Installation
 
@@ -15,7 +15,34 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/mexpanel](https://hexdocs.pm/mexpanel).
+## Usage
 
+Mixpanel provides 2 endpoints: [track](https://mixpanel.com/help/reference/http#tracking-via-http) and [engage](https://mixpanel.com/help/reference/http#people-analytics-updates).
+
+For both these endpoints, this library provides a struct with [builder functions](https://medium.com/kkempin/builder-design-pattern-in-elixir-c841e7cea307). The `new` function expects all mandatory parameters, additional properties can be set with functions
+
+### Track
+
+```elixir
+alias Mexpanel.TrackRequest
+track = TrackRequest.new("123", "user signed up", %{name: "Leif Gensert"})
+          |> TrackRequest.time(DateTime.now_utc())
+          |> TrackRequest.ip("144.10.58.141")
+          |> TrackRequest.distinct_id("user:1")
+
+Mexpanel.request(track)
+```
+
+### Engage
+
+For the engage endpoint you will need to specify an operation. See the [official documentation](https://mixpanel.com/help/reference/http#update-operations) for all available operations.
+
+```elixir
+alias Mexpanel.TrackRequest
+engage = EngageRequest.new("123", "user:1")
+          |> EngageRequest.time(DateTime.now_utc())
+          |> EngageRequest.ip("144.10.58.141")
+          |> EngageRequest.set(%{name: "Leif Gensert"})
+
+Mexpanel.request(engage)
+```

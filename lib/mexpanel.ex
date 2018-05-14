@@ -1,5 +1,7 @@
 defmodule Mexpanel do
   alias Mexpanel.Client
+  alias Mexpanel.TrackRequest
+  alias Mexpanel.EngageRequest
   @type operation ::
           :set
           | :set_once
@@ -49,6 +51,25 @@ defmodule Mexpanel do
       %{body: "1"} -> :ok
       _ -> :error
     end
+  end
+
+  def request(%TrackRequest{} = request) do
+    data = %{
+      event: request.event,
+      properties: Map.merge(request.properties, %{distinct_id: request.distinct_id, token: request.token})
+    }
+
+    Client.track(data)
+  end
+
+  def request(%EngageRequest{} = request) do
+    data = %{
+      "$token" => request.token,
+      "$distinct_id" => request.distinct_id,
+      "$#{request.operation}" => request.properties,
+    }
+
+    Client.engage(data)
   end
 
   defp api_token do
