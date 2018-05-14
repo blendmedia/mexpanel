@@ -11,7 +11,7 @@ defmodule Mexpanel.EngageRequest do
     :properties
   ]
 
-  @type properties :: map()
+  @type properties :: map() | list() | nil
 
   @type operation ::
           :set
@@ -33,14 +33,11 @@ defmodule Mexpanel.EngageRequest do
           properties: properties
         }
 
-  defmodule SetOperation do
-  end
-
   @spec new(String.t(), String.t()) :: t
   def new(token, distinct_id) do
     %__MODULE__{
       token: token,
-      distinct_id: distinct_id,
+      distinct_id: distinct_id
     }
   end
 

@@ -4,7 +4,8 @@ defmodule Mexpanel.TrackRequestTest do
 
   describe "new" do
     test "creates the right struct" do
-      assert %{token: "123", event: "user signed up", properties: %{all: :custom}} = TrackRequest.new("123", "user signed up", %{all: :custom})
+      assert %{token: "123", event: "user signed up", properties: %{all: :custom}} =
+               TrackRequest.new("123", "user signed up", %{all: :custom})
     end
   end
 
@@ -16,6 +17,7 @@ defmodule Mexpanel.TrackRequestTest do
         properties: %{},
         distinct_id: nil
       }
+
       distinct_id = "user:123"
       changed = TrackRequest.distinct_id(initial_struct, distinct_id)
       assert changed.distinct_id == distinct_id
@@ -30,7 +32,8 @@ defmodule Mexpanel.TrackRequestTest do
         properties: %{},
         time: nil
       }
-      time = DateTime.utc_now
+
+      time = DateTime.utc_now()
       changed = TrackRequest.time(initial_struct, time)
       assert changed.time == time
     end
@@ -44,6 +47,7 @@ defmodule Mexpanel.TrackRequestTest do
         properties: %{},
         ip: nil
       }
+
       ip = "144.10.58.141"
       changed = TrackRequest.ip(initial_struct, ip)
       assert changed.ip == ip

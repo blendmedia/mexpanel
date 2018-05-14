@@ -22,7 +22,7 @@ defmodule Mexpanel.MixProject do
   defp deps do
     [
       {:tesla, "~> 0.10"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.0"}
     ]
   end
 end
