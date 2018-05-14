@@ -21,7 +21,7 @@ defmodule Mexpanel.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tesla, "~> 0.10"},
+      {:tesla, "~> 1.0.0-pre"},
       {:jason, "~> 1.0"}
     ]
   end

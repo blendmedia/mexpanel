@@ -10,7 +10,7 @@ defmodule MexpanelTest do
   @ip_address "144.10.58.141"
 
   setup do
-    Application.put_env(:tesla, Mexpanel.Client, adapter: :mock)
+    Application.put_env(:tesla, Mexpanel.Client, adapter: Tesla.Mock)
     Application.put_env(:mexpanel, :token, @mixpanel_token)
 
     Tesla.Mock.mock(fn

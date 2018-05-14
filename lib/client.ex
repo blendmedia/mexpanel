@@ -14,7 +14,7 @@ defmodule Mexpanel.Client do
     post("/engage", %{data: serialize(data), verbose: "1"}) |> handle_http()
   end
 
-  defp handle_http(%{status: 200, body: body}) do
+  defp handle_http({:ok, %{status: 200, body: body}}) do
     case Jason.decode(body) do
       {:ok, %{"status" => 1}} -> :ok
       {:ok, %{"status" => 0, "error" => reason}} -> {:error, "Mixpanel API Error: #{reason}"}
@@ -23,8 +23,12 @@ defmodule Mexpanel.Client do
     end
   end
 
-  defp handle_http(%{status: http_error_status, body: body}) do
+  defp handle_http({:ok, %{status: http_error_status, body: body}}) do
     {:error, "HTTP Error (#{http_error_status}): #{body}"}
+  end
+
+  defp handle_http({:error, reason}) do
+    {:error, "HTTP Error: #{reason}"}
   end
 
   defp serialize(data) do
