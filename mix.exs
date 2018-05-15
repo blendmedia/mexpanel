@@ -22,7 +22,8 @@ defmodule Mexpanel.MixProject do
   defp deps do
     [
       {:tesla, "~> 1.0.0-pre"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:timex, "~> 3.3"}
     ]
   end
 end

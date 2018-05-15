@@ -1,16 +1,15 @@
 defmodule Mexpanel.Client do
+  alias Mexpanel.PropertySerializer
+
   use Tesla
   plug(Tesla.Middleware.BaseUrl, "https://api.mixpanel.com")
   plug(Tesla.Middleware.FormUrlencoded)
 
   def track(data) do
-    properties = remove_nils(data["properties"] || data[:properties])
-    data = data |> remove_nils() |> Map.put("properties", properties)
     post("/track", %{data: serialize(data), verbose: "1"}) |> handle_http()
   end
 
   def engage(data) do
-    data = remove_nils(data)
     post("/engage", %{data: serialize(data), verbose: "1"}) |> handle_http()
   end
 
@@ -33,14 +32,8 @@ defmodule Mexpanel.Client do
 
   defp serialize(data) do
     data
+    |> PropertySerializer.serialize()
     |> Jason.encode!()
     |> Base.url_encode64()
-  end
-
-  defp remove_nils(nil), do: nil
-  defp remove_nils(data) do
-    data
-    |> Enum.reject(&is_nil/1)
-    |> Enum.into(%{})
   end
 end
