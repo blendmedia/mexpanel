@@ -29,7 +29,8 @@ defmodule Mexpanel.MixProject do
     [
       {:tesla, "~> 1.0.0-pre"},
       {:jason, "~> 1.0"},
-      {:timex, "~> 3.3"}
+      {:timex, "~> 3.3"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
