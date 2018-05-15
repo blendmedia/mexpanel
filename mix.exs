@@ -7,6 +7,7 @@ defmodule Mexpanel.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps()
     ]
   end
@@ -24,6 +25,14 @@ defmodule Mexpanel.MixProject do
       {:tesla, "~> 1.0.0-pre"},
       {:jason, "~> 1.0"},
       {:timex, "~> 3.3"}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Leif Gensert"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/blendmedia/mexpanel"},
     ]
   end
 end
