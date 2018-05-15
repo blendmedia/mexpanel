@@ -7,6 +7,7 @@ defmodule Mexpanel.MixProject do
       version: "0.1.0-beta.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
+      description: description(),
       package: package(),
       deps: deps()
     ]
@@ -17,6 +18,10 @@ defmodule Mexpanel.MixProject do
     [
       extra_applications: [:logger]
     ]
+  end
+
+  defp description() do
+    "Mixpanel API wrapper"
   end
 
   # Run "mix help deps" to learn about dependencies.
