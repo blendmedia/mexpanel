@@ -3,13 +3,6 @@ defmodule Mexpanel do
   alias Mexpanel.TrackRequest
   alias Mexpanel.EngageRequest
 
-  defmodule Behaviour do
-    @type request :: Mexpanel.TrackRequest.t() | Mexpanel.EngageRequest.t()
-    @type api_return :: :ok | {:error, reason :: String.t()}
-
-    @callback request(request) :: api_return
-  end
-
   @behaviour __MODULE__.Behaviour
 
   def request(%TrackRequest{} = request) do
