@@ -4,7 +4,7 @@ defmodule Mexpanel.MixProject do
   def project do
     [
       app: :mexpanel,
-      version: "0.1.0-beta.1",
+      version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       description: description(),
@@ -20,14 +20,14 @@ defmodule Mexpanel.MixProject do
     ]
   end
 
-  defp description() do
+  defp description do
     "Mixpanel API wrapper"
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tesla, "~> 1.0.0-pre"},
+      {:tesla, "~> 1.0"},
       {:jason, "~> 1.0"},
       {:timex, "~> 3.3"},
       {:ex_doc, ">= 0.0.0", only: :dev}
