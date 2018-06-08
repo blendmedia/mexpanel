@@ -6,15 +6,16 @@ defmodule Mexpanel.PropertySerializer do
   end
 
   defp remove_nils(properties) do
-    compactor = fn({k, v}, acc) ->
+    compactor = fn {k, v}, acc ->
       cond do
-        is_map(v) and Map.has_key?(v, :__struct__) ->  Map.put_new(acc, k, v)
+        is_map(v) and Map.has_key?(v, :__struct__) -> Map.put_new(acc, k, v)
         is_map(v) && Enum.empty?(v) -> acc
         is_map(v) -> Map.put_new(acc, k, remove_nils(v))
         is_nil(v) -> acc
         true -> Map.put_new(acc, k, v)
       end
     end
+
     Enum.reduce(properties, %{}, compactor)
   end
 
@@ -37,9 +38,10 @@ defmodule Mexpanel.PropertySerializer do
   end
 
   defp cast_value(fallback), do: fallback
+
   defp format_time(datetime) do
     datetime
-      |> Timex.to_datetime(:utc)
-      |> Timex.format!("%Y-%m-%dT%H:%M:%S", :strftime)
+    |> Timex.to_datetime(:utc)
+    |> Timex.format!("%Y-%m-%dT%H:%M:%S", :strftime)
   end
 end

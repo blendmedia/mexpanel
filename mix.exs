@@ -38,7 +38,7 @@ defmodule Mexpanel.MixProject do
     [
       maintainers: ["Leif Gensert"],
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/blendmedia/mexpanel"},
+      links: %{"GitHub" => "https://github.com/blendmedia/mexpanel"}
     ]
   end
 end
