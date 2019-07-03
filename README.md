@@ -26,7 +26,7 @@ For both these endpoints, this library provides a struct with [builder functions
 ```elixir
 alias Mexpanel.TrackRequest
 track = TrackRequest.new("123", "user signed up", %{name: "Leif Gensert"})
-          |> TrackRequest.time(DateTime.now_utc())
+          |> TrackRequest.time(DateTime.utc_now())
           |> TrackRequest.ip("144.10.58.141")
           |> TrackRequest.distinct_id("user:1")
 
@@ -40,7 +40,7 @@ For the engage endpoint you will need to specify an operation. See the [official
 ```elixir
 alias Mexpanel.TrackRequest
 engage = EngageRequest.new("123", "user:1")
-          |> EngageRequest.time(DateTime.now_utc())
+          |> EngageRequest.time(DateTime.utc_now())
           |> EngageRequest.ip("144.10.58.141")
           |> EngageRequest.set(%{name: "Leif Gensert"})
 
