@@ -38,7 +38,7 @@ Mexpanel.request(track)
 For the engage endpoint you will need to specify an operation. See the [official documentation](https://mixpanel.com/help/reference/http#update-operations) for all available operations.
 
 ```elixir
-alias Mexpanel.TrackRequest
+alias Mexpanel.EngageRequest
 engage = EngageRequest.new("123", "user:1")
           |> EngageRequest.time(DateTime.now_utc())
           |> EngageRequest.ip("144.10.58.141")
